@@ -1,0 +1,5 @@
+voronoi()
+  .mult(voronoi(10,0.8,6)
+        .pixelate(60))
+  .color(0,12,24)
+  .out()
