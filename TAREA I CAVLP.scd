@@ -1,8 +1,20 @@
-a=Synth(\misinte,[\frec, rrand(540,800)]);
+s.boot;
+
+(
+SynthDef(\misinte,{|frec=440, amp=0.5|
+	var sen, env;
+	sen=SinOsc.ar(frec, 0, amp);
+	env=EnvGen.kr(Env.new([0,1,0],[0.1,0.1]),doneAction:2);
+	Out.ar(0, sen*env)
+}).add
+);
+
 a.free;
-SynthDef.help;
-Env.help;
-Env.new([0,1,0.5,0.5,0],[0.1,0.1,0.1,0.5]).plot;
+
+a=Synth(\misinte,[\frec, rrand(540,800)]);
+
+Env.new([0,1,0.6,0.6,0],[0.1,0.1,0.1,0.6]).plot;
+
 (
 ~sec1=Pdef(\sec,
 	Pbind(\instrument,\misinte,
